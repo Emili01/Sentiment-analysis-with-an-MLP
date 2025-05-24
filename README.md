@@ -1,2 +1,3 @@
-# Sentiment-analysis-with-an-MLP
-A sentiment analysis model using a Multilayer Perceptron (MLP) neural network. This project classifies text sentiment (positive, neutral or negative) from Twitter and Reddit data, implemented in Python with Pytorch
+Ejecutar conda install -r requirements.txt
+
+Y luego python main.py y listo empiezan a entrenarse los modelos con las combinaciones de hiperparametros que hay en la linea 278 de mlp.py
