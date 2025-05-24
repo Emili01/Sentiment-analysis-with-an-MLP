@@ -1,0 +1,21 @@
+====== Best Hyperparameters ======
+Hidden Dimensions: [2048, 1024, 512, 256, 128]
+Dropout Rates: [0.4, 0.4, 0.3, 0.3, 0.2]
+Learning Rate: 0.001
+Batch Size: 128
+Train Accuracy: 0.8929
+Test/Validation Accuracy: 0.8187
+Train Loss: 0.2776
+Test/Validation Loss: 0.5008
+Epochs Used: 34/75 (45%)
+
+====== Classification Report ======
+               precision    recall  f1-score   support
+
+Negative (-1)       0.83      0.89      0.86     14051
+  Neutral (0)       0.80      0.80      0.80     10929
+ Positive (1)       0.82      0.76      0.79     14114
+
+     accuracy                           0.82     39094
+    macro avg       0.82      0.82      0.82     39094
+ weighted avg       0.82      0.82      0.82     39094
