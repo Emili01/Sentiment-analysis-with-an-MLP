@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Analysis</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Sentiment Analysis</h1>
+            <p class="subtitle">Discover if a text is positive, negative or neutral</p>
+        </header>
+
+        <main>
+            <div class="input-section">
+                <textarea id="text-input" placeholder="Write or paste a text to analyze its sentiment..."></textarea>
+                <button id="analyze-btn">Analyze</button>
+            </div>
+
+            <div class="results-section" id="results-container">
+                <div class="result-card hidden" id="result-card">
+                    <h2>Analysis Result</h2>
+                    
+                    <div class="sentiment-result">
+                        <div class="sentiment-icon" id="sentiment-icon">
+                            <div class="emoji">😐</div>
+                        </div>
+                        <div class="sentiment-details">
+                            <h3 id="sentiment-label">Neutral</h3>
+                            <div class="probabilities">
+                                <div class="prob-bar">
+                                    <span>Negative</span>
+                                    <div class="bar-container">
+                                        <div class="bar negative" id="negative-bar"></div>
+                                        <span class="prob-value" id="negative-prob">0%</span>
+                                    </div>
+                                </div>
+                                <div class="prob-bar">
+                                    <span>Neutral</span>
+                                    <div class="bar-container">
+                                        <div class="bar neutral" id="neutral-bar"></div>
+                                        <span class="prob-value" id="neutral-prob">0%</span>
+                                    </div>
+                                </div>
+                                <div class="prob-bar">
+                                    <span>Positive</span>
+                                    <div class="bar-container">
+                                        <div class="bar positive" id="positive-bar"></div>
+                                        <span class="prob-value" id="positive-prob">0%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="analyzed-text">
+                        <h4>Analyzed Text:</h4>
+                        <p id="analyzed-text-content"></p>
+                    </div>
+                </div>
+
+                <div class="loading hidden" id="loading">
+                    <div class="spinner"></div>
+                    <p>Analyzing text...</p>
+                </div>
+
+                <div class="error hidden" id="error">
+                    <div class="error-icon">❌</div>
+                    <h3>Error</h3>
+                    <p id="error-message">An error occurred while analyzing the text.</p>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>Sentiment Analysis with MLP (Multilayer Perceptron)</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 

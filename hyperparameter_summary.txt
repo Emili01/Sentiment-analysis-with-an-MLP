@@ -1,6 +1,0 @@
-====== Summary of All Combinations (Sorted by Test Accuracy) ======
-
-#   Hidden Dims                              Dropout Rates                  Regularization       Train Acc  Test Acc   Overfitting Epochs         
-------------------------------------------------------------------------------------------------------------------------------------------------------
-1   [2048, 1024, 512, 256, 128]              [0.4, 0.4, 0.3, 0.3, 0.2]      Regularization: BN   0.8929     0.8187     0.0772     34/75 (45%)
-2   [4096, 3072, 2048, 1024, 512]            [0.4, 0.4, 0.3, 0.3, 0.2]      Regularization: BN   0.9232     0.8151     0.0919     24/75 (32%)

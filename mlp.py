@@ -11,6 +11,7 @@ import seaborn as sns
 from itertools import product
 import copy
 import time
+import os
 
 class MLP(nn.Module):
     def __init__(self, input_dim, hidden_dims, output_dim, dropout_rates=None, activation=nn.ReLU, 
@@ -597,7 +598,7 @@ def load_best_model(model_path='best_mlp_model_full.pt', config_path='model_conf
     
     # Method 1: Load complete model directly (architecture + weights)
     try:
-        model = torch.load(model_path)
+        model = torch.load(model_path, map_location=torch.device('cpu'))
         print(f"Model loaded successfully from {model_path}")
     except Exception as e:
         print(f"Error loading full model: {e}")
@@ -620,9 +621,15 @@ def load_best_model(model_path='best_mlp_model_full.pt', config_path='model_conf
                     batch_norm=config.get('batch_norm', False)  # Use get() with default in case key is missing
                 )
                 
+                # Get directory of model_path for loading weights
+                model_dir = os.path.dirname(model_path)
+                weights_path = os.path.join(model_dir, 'best_mlp_model.pt')
+                if not os.path.exists(weights_path):
+                    weights_path = 'best_mlp_model.pt'  # Fallback to current directory
+                
                 # Load weights
-                model.load_state_dict(torch.load('best_mlp_model.pt'))
-                print("Model weights loaded successfully")
+                model.load_state_dict(torch.load(weights_path))
+                print(f"Model weights loaded successfully from {weights_path}")
     except Exception as e:
         print(f"Error loading model configuration: {e}")
         config = None

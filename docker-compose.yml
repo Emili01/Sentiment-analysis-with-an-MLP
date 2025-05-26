@@ -1,0 +1,44 @@
+services:
+  backend:
+    build: 
+      context: .
+      dockerfile: backend/Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./models:/app/models
+      - ./backend/backend.py:/app/backend.py
+      - ./mlp.py:/app/mlp.py
+    environment:
+      - EMBEDDING_MODEL_PATH=/app/models/glove_twitter_200.model
+      - MODEL_PATH=/app/models/best_mlp_model_full.pt
+      - CONFIG_PATH=/app/models/model_config.json
+    command: sh -c "echo 'Contents of /app/models inside container:' && ls -l /app/models && echo 'Starting Uvicorn...' && uvicorn backend:app --host 0.0.0.0 --port 8000 --reload"
+    depends_on:
+      - model-trainer
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+
+  model-trainer:
+    build:
+      context: .
+      dockerfile: model-trainer/Dockerfile
+    volumes:
+      - ./models:/app/models
+    environment:
+      - MODEL_OUTPUT_DIR=/app/models
+    # Solo se ejecuta si no existe el modelo
+    command: >
+      sh -c "if [ ! -f /app/models/best_mlp_model_full.pt ]; then
+             python train_model.py;
+             else
+             echo 'Model already exists. Skipping training.';
+             exit 0;
+             fi" 
